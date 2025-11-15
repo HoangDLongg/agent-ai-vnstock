@@ -13,9 +13,9 @@ from typing import List, Dict, Union, Tuple
 logging.getLogger("vnstock").setLevel(logging.ERROR)
 DATA_SOURCE = 'TCBS'
 
-# ==============================================================================
+
 # === sma and rsi ===
-# ==============================================================================
+
 
 def _calculate_sma(series: pd.Series, period: int) -> pd.Series:
     """Tính toán SMA (Simple Moving Average)"""
@@ -268,9 +268,9 @@ def compare_stock_volumes(symbol1: str, symbol2: str, date_query: str) -> str:
     except Exception as e:
         return f"Lỗi so sánh volume: {e}"
 
-# ==============================================================================
+
 # === 4. DANH SÁCH TOOLS (FINAL) ===
-# ==============================================================================
+
 
 all_tools = [
     FunctionTool.from_defaults(
