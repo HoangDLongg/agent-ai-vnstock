@@ -1,0 +1,261 @@
+=== TEST 1 ===
+Question: Lấy dữ liệu OHLCV 10 ngày gần nhất HPG?
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Kết quả cho HPG (từ 2025-11-05 đến 2025-11-15):
+Tổng khối lượng (Volume): 248,417,663 cổ phiếu.
+
+Dữ liệu chi tiết:
+      time  open  high  low  close   volume
+2025-11-05    26    27   26     26 20868717
+2025-11-06    26    26   26     26 21236298
+2025-11-07    26    27   26     26 55127315
+2025-11-10    26    27   26     26 48049077
+2025-11-11    27    27   26     27 31359035
+2025-11-12    27    27   27     27 30691952
+2025-11-13    27    27   27     27 18957281
+2025-11-14    26    27   26     27 22127988
+```
+
+=== TEST 2 ===
+Question: Lấy giá đóng của của mã VCB từ đầu tháng 11 theo khung 1d?
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Kết quả cho VCB (từ 2025-11-01 đến 2025-11-15):
+Tổng khối lượng (Volume): 27,878,808 cổ phiếu.
+
+Dữ liệu chi tiết:
+      time  open  high  low  close  volume
+2025-11-03    60    60   59     59 2807123
+2025-11-04    59    60   59     60 2960664
+2025-11-05    60    61   60     61 4607422
+2025-11-06    61    61   60     60 2828112
+2025-11-07    60    60   59     59 3594828
+2025-11-10    59    60   59     59 2323470
+2025-11-11    59    60   59     59 2546584
+2025-11-12    59    60   59     60 2017657
+2025-11-13    60    60   59     60 2118685
+2025-11-14    60    60   59     60 2074263
+```
+
+=== TEST 3 ===
+Question: Trong các mã BID, TCB và VCB mã nào có giá mở cửa thấp nhất trong 10 ngày qua?
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Mã BID: 31 VND
+Mã TCB: 22 VND
+Mã VCB: 52 VND
+
+Mã có giá open thấp nhất: TCB (22 VND)
+```
+
+=== TEST 4 ===
+Question: Tổng khối lượng giao dịch (volume) của mã VIC trong vòng 1 tuần gần đây?
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Kết quả cho VIC (từ 2025-11-08 đến 2025-11-15):
+Tổng khối lượng (Volume): 16,095,461 cổ phiếu.
+
+Dữ liệu chi tiết:
+      time  open  high  low  close  volume
+2025-11-10   199   204  193    199 2796734
+2025-11-11   199   204  199    201 4231195
+2025-11-12   200   211  200    211 3899846
+2025-11-13   210   216  209    211 3076522
+2025-11-14   211   211  208    211 2091164
+```
+
+=== TEST 5 ===
+Question: So sánh khối lượng giao dịch của VIC với HPG trong 2 tuần gần đây?
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Mã VIC: 40 VND
+Mã HPG: 18 VND
+
+Mã có giá open thấp nhất: HPG (18 VND)
+```
+
+=== TEST 6 ===
+Question: Danh sách cổ đông lớn của VCB
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+id              share_holder quantity  share_own_percent update_date
+None The State Bank Of Vietnam     None             0.7480        None
+None         Mizuho Bank, Ltd.     None             0.1500        None
+None                     Other     None             0.0151        None
+```
+
+=== TEST 7 ===
+Question: Danh sách ban lãnh đạo đang làm việc của VCB
+Result: FAIL
+Answer:
+Lỗi khi lấy thông tin officers cho VCB: "['position'] not in index"
+
+=== TEST 8 ===
+Question: Các công ty con thuộc VCB
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+sub_company_name  sub_own_percent
+                       Vietnam Foreign Trade Joint Stock Bank Securities Company Limited            1.000
+Money Transfer Company Limited Joint Stock Commercial Bank For Foreign Trade Of Viet Nam            1.000
+                                                  Vietcombank Financial Leasing Co., Ltd            1.000
+                                         Vietnam Finance Company In Hong Kong - Vinafico            1.000
+                                                                        Vietnam Neo Bank            1.000
+                                           Foreign Trade Of Vietnam Bank Limited In Laos            1.000
+                                                                       Vcb Money Company            0.875
+                                                      Vietcombank Money Transfer Company            0.875
+                                                               Vietcombank Tower 198 Ltd            0.700
+                               Vietcombank-bonday-benthanh Joint Venture Company Limited            0.520
+```
+
+=== TEST 9 ===
+Question: Lấy cho tôi toàn bộ tên các lãnh đạo đang làm việc của VCB
+Result: FAIL
+Answer:
+Lỗi khi lấy thông tin officers cho VCB: "['position'] not in index"
+
+=== TEST 10 ===
+Question: Tính cho tôi SMA9 của mã VIC trong 2 tuần với timeframe 1d
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Kết quả cho VIC (từ 2025-11-01 đến 2025-11-15):
+Tổng khối lượng (Volume): 32,735,854 cổ phiếu.
+
+Dữ liệu chi tiết:
+      time  open  high  low  close  volume  SMA_9
+2025-11-03   191   200  186    195 3644665    208
+2025-11-04   198   205  196    201 2523017    208
+2025-11-05   201   208  198    206 2145538    207
+2025-11-06   206   212  204    208 4615961    206
+2025-11-07   205   208  200    200 3711212    204
+2025-11-10   199   204  193    199 2796734    202
+2025-11-11   199   204  199    201 4231195    201
+2025-11-12   200   211  200    211 3899846    201
+2025-11-13   210   216  209    211 3076522    204
+2025-11-14   211   211  208    211 2091164    205
+```
+
+=== TEST 11 ===
+Question: Tính cho tôi SMA9 và SMA20 của mã VIC trong 2 tháng với timeframe 1d
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Kết quả cho VIC (từ 2025-09-15 đến 2025-11-15):
+Tổng khối lượng (Volume): 174,186,121 cổ phiếu.
+
+Dữ liệu chi tiết:
+      time  open  high  low  close  volume  SMA_9  SMA_20
+2025-09-15   138   138  135    138 2149664    130     128
+2025-09-16   138   138  134    135 2925338    131     129
+2025-09-17   134   144  133    143 3999937    133     130
+2025-09-18   144   150  142    145 4400114    136     131
+2025-09-19   145   153  143    153 5623887    139     133
+2025-09-22   150   154  144    149 5122385    141     134
+2025-09-23   148   150  146    149 1431263    143     135
+2025-09-24   149   152  146    149 1757357    144     136
+2025-09-25   149   158  147    158 2828978    147     137
+2025-09-26   158   165  156    164 2719861    149     139
+2025-09-29   162   175  161    173 2457795    154     141
+2025-09-30   174   183  174    175 4686675    157     143
+2025-10-01   175   175  168    170 2654215    160     145
+2025-10-02   169   176  169    171 2388126    162     148
+2025-10-03   172   179  171    176 4900222    165     150
+2025-10-06   187   187  176    180 2414213    168     153
+2025-10-07   181   182  178    180 2375190    172     156
+2025-10-08   179   181  175    178 3265455    174     158
+2025-10-09   177   182  176    180 4141178    176     160
+2025-10-10   178   192  178    192 4308631    178     163
+2025-10-13   194   205  194    205 7194006    181     166
+2025-10-14   216   220  207    212 8097094    186     170
+2025-10-15   214   215  206    210 3766596    190     173
+2025-10-16   210   218  206    213 5230598    194     177
+2025-10-17   214   215  200    204 5633928    197     179
+2025-10-20   200   204  190    195 5696503    199     182
+2025-10-21   202   205  194    203 3712349    202     184
+2025-10-22   204   204  193    203 4206567    204     187
+2025-10-23   203   216  200    215 4780435    207     190
+2025-10-24   215   223  215    219 3430619    208     193
+2025-10-27   223   226  214    214 3910623    208     195
+2025-10-28   214   221  199    220 5229446    210     197
+2025-10-29   219   219  212    212 2748038    209     199
+2025-10-30   210   212  202    204 3783654    210     201
+2025-10-31   202   204  191    191 7479327    209     201
+2025-11-03   191   200  186    195 3644665    208     202
+2025-11-04   198   205  196    201 2523017    208     203
+2025-11-05   201   208  198    206 2145538    207     205
+2025-11-06   206   212  204    208 4615961    206     206
+2025-11-07   205   208  200    200 3711212    204     207
+2025-11-10   199   204  193    199 2796734    202     206
+2025-11-11   199   204  199    201 4231195    201     206
+2025-11-12   200   211  200    211 3899846    201     206
+2025-11-13   210   216  209    211 3076522    204     206
+2025-11-14   211   211  208    211 2091164    205     206
+```
+
+=== TEST 12 ===
+Question: Tính cho tôi RSI14 của TCB trong 1 tuần với timeframe 1m
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Kết quả cho TCB (từ 2025-11-08 đến 2025-11-15):
+Tổng khối lượng (Volume): 5,321,800 cổ phiếu.
+
+Dữ liệu chi tiết:
+      time  open  high  low  close  volume  RSI_14
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0       0
+2025-11-14    35    35   35     35       0     NaN
+```
+
+=== TEST 13 ===
+Question: Tính SMA9 và SMA20 của mã TCB từ đầu tháng 11 đến nay
+Result: PASS
+Answer:
+Dưới đây là bảng dữ liệu:
+```
+Kết quả cho TCB (từ 2025-11-01 đến 2025-11-15):
+Tổng khối lượng (Volume): 124,120,244 cổ phiếu.
+
+Dữ liệu chi tiết:
+      time  open  high  low  close   volume  SMA_9  SMA_20
+2025-11-03    35    36   34     34 16755958     36      38
+2025-11-04    34    35   33     35 16075027     36      38
+2025-11-05    35    35   34     34 11262968     35      38
+2025-11-06    34    34   34     34 13691729     35      37
+2025-11-07    34    34   33     33 16099427     35      37
+2025-11-10    33    34   33     33  8803389     34      37
+2025-11-11    33    34   33     34 11247129     34      36
+2025-11-12    34    35   34     35 12033916     34      36
+2025-11-13    35    36   35     35 12541547     34      36
+2025-11-14    35    35   35     35  5609154     34      35
+```
+
