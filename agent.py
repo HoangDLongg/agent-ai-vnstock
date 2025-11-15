@@ -1,6 +1,3 @@
-# ============================================
-# agent.py — BẢN FIX FULL CHO 14 TEST CASE
-# ============================================
 
 import os
 os.environ["VNSTOCK_DISABLE_ADS"] = "1"
@@ -13,14 +10,13 @@ import logging
 
 logging.getLogger("ollama").setLevel(logging.ERROR)
 
-# ==============================================
 # 1. Intent Classification (PHẦN QUAN TRỌNG NHẤT)
-# ==============================================
+
 
 def classify_intent(question: str) -> dict:
     q = question.lower()
 
-    # -------- COMPANY INFO -----------
+    # COMPANY INFO 
     if "cổ đông" in q:
         return {"intent": "company_info", "info_type": "shareholders"}
     if "ban lãnh đạo" in q or "lãnh đạo" in q:
@@ -28,25 +24,25 @@ def classify_intent(question: str) -> dict:
     if "công ty con" in q:
         return {"intent": "company_info", "info_type": "subsidiaries"}
 
-    # ---------- COMPARE --------------
+    #COMPARE
     if "so sánh" in q and "volume" in q:
         return {"intent": "compare_volume"}
     if "so sánh" in q or "thấp nhất" in q:
         return {"intent": "compare_price"}
 
-    # ---------- TECHNICAL ------------
+    # TECHNICAL 
     if "sma" in q or "rsi" in q:
         return {"intent": "technical"}
 
-    # ---------- OHLCV / VOLUME -------
+    # OHLCV / VOLUME 
     if "ohlcv" in q or "giá" in q or "volume" in q or "khối lượng" in q:
         return {"intent": "ohlcv"}
 
     return {"intent": "unknown"}
 
-# ==============================================
+
 # 2. Extract Useful Fields
-# ==============================================
+
 
 def extract_symbols(question: str):
     return re.findall(r'\b[A-Z]{2,4}\b', question)
@@ -85,9 +81,9 @@ def extract_indicators(question: str):
         inds.append(f"RSI_{rsi}")
     return inds
 
-# ==============================================
+
 # 3. RESOLUTION MAP
-# ==============================================
+
 
 RESOLUTION_MAP = {
     '1d': '1D', 'daily': '1D',
@@ -97,9 +93,9 @@ RESOLUTION_MAP = {
     '1h': '1H',
 }
 
-# ==============================================
+
 # 4. MAIN AGENT RESPONSE
-# ==============================================
+
 
 def get_agent_response(question: str) -> str:
     if not question.strip():
@@ -119,13 +115,13 @@ def get_agent_response(question: str) -> str:
     # ÁP DỤNG RESOLUTION MAP
     resolution = RESOLUTION_MAP.get(resolution.lower(), "1D")
 
-    # ===============================================================
+
     # 5. MAP INTENT → TOOL CALL
-    # ===============================================================
+
 
     tool_call = None
 
-    # -------- COMPANY INFO ----------
+    # COMPANY INFO 
     if intent["intent"] == "company_info":
         tool_call = {
             "name": "get_company_info",
@@ -135,7 +131,7 @@ def get_agent_response(question: str) -> str:
             }
         }
 
-    # -------- COMPARE PRICE --------
+    #  COMPARE PRICE 
     elif intent["intent"] == "compare_price":
         tool_call = {
             "name": "compare_stock_prices",
@@ -146,7 +142,7 @@ def get_agent_response(question: str) -> str:
             }
         }
 
-    # -------- COMPARE VOLUME --------
+    # COMPARE VOLUME 
     elif intent["intent"] == "compare_volume":
         tool_call = {
             "name": "compare_stock_volumes",
@@ -157,7 +153,7 @@ def get_agent_response(question: str) -> str:
             }
         }
 
-    # -------- TECHNICAL INDICATORS ----
+    #  TECHNICAL INDICATORS
     elif intent["intent"] == "technical":
         tool_call = {
             "name": "get_stock_analysis",
@@ -169,7 +165,7 @@ def get_agent_response(question: str) -> str:
             }
         }
 
-    # -------- OHLCV / VOLUME ----------
+    # OHLCV / VOLUME
     elif intent["intent"] == "ohlcv":
         tool_call = {
             "name": "get_stock_analysis",
@@ -184,9 +180,9 @@ def get_agent_response(question: str) -> str:
     else:
         return "Không hiểu yêu cầu."
 
-    # ===============================================================
+
     # 6. RUN TOOL DIRECTLY
-    # ===============================================================
+
 
     tool = next((t for t in all_tools if t.metadata.name == tool_call["name"]), None)
     result = tool.fn(**tool_call["arguments"])
